@@ -12,9 +12,16 @@ export default async function ProductsPage() {
   const cartProducts = await response2.json();
 
   return (
-    <div className="container mx-auto p-8"> 
-      <h1 className="text-4xl font-bold mb-8">Products</h1> 
-      <ProductsList products={products} initialCartProducts={cartProducts} />
-    </div>
+    <main className="section-padding">
+      <div className="container-max mx-auto">
+        <div className="text-center mb-16">
+          <h1 className="text-5xl md:text-6xl font-bold mb-4">Our Collection</h1>
+          <p className="text-lg text-[var(--secondary)] max-w-2xl mx-auto">
+            Premium eco-friendly merchandise crafted with care and designed to last
+          </p>
+        </div>
+        <ProductsList products={products} initialCartProducts={cartProducts} />
+      </div>
+    </main>
   );
 }
