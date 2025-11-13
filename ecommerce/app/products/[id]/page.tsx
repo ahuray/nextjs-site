@@ -13,11 +13,11 @@ export default async function ProductDetailPage({ params }: { params: { id: stri
   }
 
   return (
-    <main className="section-padding">
+    <main className="section-padding animate-fade-in">
       <div className="container-max mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
           {/* Product Image */}
-          <div className="relative aspect-square overflow-hidden rounded-3xl bg-gray-100 dark:bg-gray-800">
+          <div className="relative aspect-square overflow-hidden rounded-2xl md:rounded-3xl bg-gradient-to-br from-gray-100 to-gray-50 dark:from-gray-800 dark:to-gray-900">
             <Image
               src={'/' + product.imageUrl}
               alt={product.name}
@@ -28,53 +28,53 @@ export default async function ProductDetailPage({ params }: { params: { id: stri
           </div>
 
           {/* Product Info */}
-          <div className="flex flex-col justify-center space-y-8">
-            <div>
-              <p className="text-sm text-[var(--accent)] font-medium mb-3 uppercase tracking-wide">
+          <div className="flex flex-col justify-center space-y-6 md:space-y-8">
+            <div className="animate-slide-up">
+              <p className="text-xs md:text-sm text-[var(--accent)] font-semibold mb-2 md:mb-3 uppercase tracking-wider">
                 Premium Quality
               </p>
-              <h1 className="text-5xl md:text-6xl font-bold mb-6">
+              <h1 className="heading-xl mb-4 md:mb-6">
                 {product.name}
               </h1>
-              <p className="text-4xl font-semibold mb-8">
+              <p className="text-3xl md:text-4xl font-bold mb-6 md:mb-8">
                 ${product.price}
               </p>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-4 md:space-y-6">
               <div>
-                <h2 className="text-2xl font-semibold mb-4">Description</h2>
-                <p className="text-lg text-[var(--secondary)] leading-relaxed">
+                <h2 className="heading-md mb-3 md:mb-4">Description</h2>
+                <p className="body-md text-[var(--secondary)]">
                   {product.description}
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4 pt-6">
-                <button className="btn-primary text-lg px-8 py-4 flex-1">
+              <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-4 md:pt-6">
+                <button className="btn-primary text-base md:text-lg px-8 py-3.5 md:py-4 flex-1 shadow-lg">
                   Add to Cart
                 </button>
-                <Link href="/products" className="btn-secondary text-lg px-8 py-4 text-center flex-1">
+                <Link href="/products" className="btn-secondary text-base md:text-lg px-8 py-3.5 md:py-4 text-center flex-1">
                   Browse More
                 </Link>
               </div>
             </div>
 
             {/* Features */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-8 border-t border-[var(--border)]">
-              <div className="text-center md:text-left">
-                <div className="text-3xl mb-2">🌱</div>
-                <p className="text-sm font-medium">100% Organic</p>
-                <p className="text-xs text-[var(--secondary)]">Sustainable materials</p>
+            <div className="grid grid-cols-3 gap-4 md:gap-6 pt-6 md:pt-8 border-t border-[var(--border)]">
+              <div className="text-center">
+                <div className="text-2xl md:text-3xl mb-2">🌱</div>
+                <p className="text-xs md:text-sm font-semibold mb-1">100% Organic</p>
+                <p className="text-[10px] md:text-xs text-[var(--secondary)]">Sustainable</p>
               </div>
-              <div className="text-center md:text-left">
-                <div className="text-3xl mb-2">♻️</div>
-                <p className="text-sm font-medium">Eco-Friendly</p>
-                <p className="text-xs text-[var(--secondary)]">PVC-free inks</p>
+              <div className="text-center">
+                <div className="text-2xl md:text-3xl mb-2">♻️</div>
+                <p className="text-xs md:text-sm font-semibold mb-1">Eco-Friendly</p>
+                <p className="text-[10px] md:text-xs text-[var(--secondary)]">PVC-free</p>
               </div>
-              <div className="text-center md:text-left">
-                <div className="text-3xl mb-2">✨</div>
-                <p className="text-sm font-medium">Premium Quality</p>
-                <p className="text-xs text-[var(--secondary)]">Crafted with care</p>
+              <div className="text-center">
+                <div className="text-2xl md:text-3xl mb-2">✨</div>
+                <p className="text-xs md:text-sm font-semibold mb-1">Premium</p>
+                <p className="text-[10px] md:text-xs text-[var(--secondary)]">Crafted well</p>
               </div>
             </div>
           </div>

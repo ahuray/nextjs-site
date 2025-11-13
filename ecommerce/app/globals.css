@@ -8,6 +8,12 @@
   --secondary: #6e6e73;
   --accent: #0071e3;
   --border: #d2d2d7;
+  --success: #34c759;
+  --error: #ff3b30;
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -17,7 +23,17 @@
     --secondary: #86868b;
     --accent: #2997ff;
     --border: #424245;
+    --success: #30d158;
+    --error: #ff453a;
+    --shadow-sm: 0 1px 3px 0 rgb(255 255 255 / 0.05), 0 1px 2px -1px rgb(255 255 255 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(255 255 255 / 0.05), 0 2px 4px -2px rgb(255 255 255 / 0.05);
+    --shadow-lg: 0 10px 15px -3px rgb(255 255 255 / 0.05), 0 4px 6px -4px rgb(255 255 255 / 0.05);
+    --shadow-xl: 0 20px 25px -5px rgb(255 255 255 / 0.05), 0 8px 10px -6px rgb(255 255 255 / 0.05);
   }
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
@@ -26,6 +42,8 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "kern" 1, "liga" 1;
+  letter-spacing: -0.003em;
 }
 
 @layer utilities {
@@ -35,27 +53,163 @@ body {
 }
 
 @layer components {
+  /* Button Styles */
   .btn-primary {
-    @apply bg-[var(--accent)] text-white px-6 py-3 rounded-full font-medium transition-all duration-200 hover:opacity-90 hover:scale-[1.02] active:scale-[0.98];
+    @apply bg-[var(--accent)] text-white px-6 py-3 rounded-full font-medium smooth-transition shadow-md;
+    @apply hover:opacity-90 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98] active:shadow-sm;
+    @apply focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2;
   }
 
   .btn-secondary {
-    @apply border-2 border-[var(--accent)] text-[var(--accent)] px-6 py-3 rounded-full font-medium transition-all duration-200 hover:bg-[var(--accent)] hover:text-white hover:scale-[1.02] active:scale-[0.98];
+    @apply border-2 border-[var(--accent)] text-[var(--accent)] px-6 py-3 rounded-full font-medium smooth-transition;
+    @apply hover:bg-[var(--accent)] hover:text-white hover:scale-[1.02] active:scale-[0.98];
+    @apply focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2;
   }
 
+  /* Layout */
   .section-padding {
-    @apply px-6 md:px-12 lg:px-20 py-12 md:py-16 lg:py-20;
+    @apply px-4 sm:px-6 md:px-12 lg:px-20 py-12 md:py-16 lg:py-24;
   }
 
   .container-max {
-    @apply max-w-7xl mx-auto;
+    @apply max-w-[1400px] mx-auto;
   }
 
+  /* Transitions */
   .smooth-transition {
-    @apply transition-all duration-300 ease-in-out;
+    @apply transition-all duration-300 ease-out;
   }
 
-  .card-minimal {
-    @apply bg-white dark:bg-[#1d1d1f] rounded-2xl overflow-hidden smooth-transition hover:shadow-2xl;
+  .smooth-transition-slow {
+    @apply transition-all duration-500 ease-out;
   }
+
+  /* Card Styles */
+  .card-minimal {
+    @apply bg-white dark:bg-[#1d1d1f] rounded-2xl overflow-hidden smooth-transition;
+    box-shadow: var(--shadow-md);
+  }
+
+  .card-minimal:hover {
+    box-shadow: var(--shadow-xl);
+    transform: translateY(-4px);
+  }
+
+  /* Enhanced Product Card */
+  .product-card {
+    @apply card-minimal cursor-pointer;
+  }
+
+  .product-card-image {
+    @apply aspect-square relative overflow-hidden bg-gradient-to-br from-gray-100 to-gray-50 dark:from-gray-800 dark:to-gray-900;
+  }
+
+  /* Typography */
+  .heading-hero {
+    @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1];
+    letter-spacing: -0.02em;
+  }
+
+  .heading-xl {
+    @apply text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-tight;
+    letter-spacing: -0.015em;
+  }
+
+  .heading-lg {
+    @apply text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight;
+    letter-spacing: -0.01em;
+  }
+
+  .heading-md {
+    @apply text-xl sm:text-2xl font-semibold;
+  }
+
+  .body-lg {
+    @apply text-lg sm:text-xl leading-relaxed;
+  }
+
+  .body-md {
+    @apply text-base sm:text-lg leading-relaxed;
+  }
+
+  /* Animations */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out;
+  }
+
+  /* Skeleton Loader */
+  .skeleton {
+    @apply bg-gray-200 dark:bg-gray-800 animate-pulse rounded;
+  }
+
+  .skeleton-text {
+    @apply skeleton h-4 w-full mb-2;
+  }
+
+  .skeleton-image {
+    @apply skeleton aspect-square w-full;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--secondary);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--foreground);
+}
+
+/* Selection */
+::selection {
+  background: var(--accent);
+  color: white;
 }

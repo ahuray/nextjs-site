@@ -41,45 +41,52 @@ export default function ProductsList({ products, initialCartProducts = [] }: { p
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-      {products.map(product => (
-        <div key={product.id} className="card-minimal group">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+      {products.map((product, index) => (
+        <div
+          key={product.id}
+          className="product-card"
+          style={{ animationDelay: `${index * 50}ms` }}
+        >
           <Link href={`/products/${product.id}`} className="block">
-            <div className="aspect-square relative overflow-hidden bg-gray-100 dark:bg-gray-800">
+            <div className="product-card-image">
               <Image
                 src={'/' + product.imageUrl}
                 alt={product.name}
                 fill
-                className="object-cover group-hover:scale-105 smooth-transition"
+                className="object-cover group-hover:scale-110 smooth-transition-slow"
               />
             </div>
-            <div className="p-6">
-              <h2 className="text-xl font-semibold mb-2 group-hover:text-[var(--accent)] smooth-transition">
+            <div className="p-4 md:p-6">
+              <h2 className="text-lg md:text-xl font-semibold mb-2 group-hover:text-[var(--accent)] smooth-transition">
                 {product.name}
               </h2>
-              <p className="text-[var(--secondary)] text-sm mb-4 line-clamp-2">
+              <p className="text-[var(--secondary)] text-xs md:text-sm mb-3 md:mb-4 line-clamp-2">
                 {product.description}
               </p>
-              <p className="text-lg font-medium mb-4">${product.price}</p>
+              <p className="text-lg md:text-xl font-semibold mb-4">${product.price}</p>
             </div>
           </Link>
 
           {productIsInCart(product.id) ? (
-            <div className="px-6 pb-6">
+            <div className="px-4 md:px-6 pb-4 md:pb-6">
               <button
-                className="w-full bg-gray-200 dark:bg-gray-700 text-[var(--foreground)] px-6 py-3 rounded-full font-medium smooth-transition hover:bg-gray-300 dark:hover:bg-gray-600"
+                className="w-full bg-gray-100 dark:bg-gray-800 text-[var(--foreground)] px-6 py-2.5 md:py-3 rounded-full font-medium smooth-transition hover:bg-gray-200 dark:hover:bg-gray-700 border-2 border-gray-200 dark:border-gray-700"
                 onClick={(e) => {
                   e.preventDefault();
                   removeFromCart(product.id);
                 }}
               >
-                Remove from Cart
+                <span className="flex items-center justify-center gap-2">
+                  <span>✓</span>
+                  <span>In Cart</span>
+                </span>
               </button>
             </div>
           ) : (
-            <div className="px-6 pb-6">
+            <div className="px-4 md:px-6 pb-4 md:pb-6">
               <button
-                className="btn-primary w-full"
+                className="btn-primary w-full text-sm md:text-base"
                 onClick={(e) => {
                   e.preventDefault();
                   addToCart(product.id);

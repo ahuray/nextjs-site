@@ -12,11 +12,11 @@ export default async function ProductsPage() {
   const cartProducts = await response2.json();
 
   return (
-    <main className="section-padding">
+    <main className="section-padding animate-fade-in">
       <div className="container-max mx-auto">
-        <div className="text-center mb-16">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4">Our Collection</h1>
-          <p className="text-lg text-[var(--secondary)] max-w-2xl mx-auto">
+        <div className="text-center mb-12 md:mb-16">
+          <h1 className="heading-xl mb-4">Our Collection</h1>
+          <p className="body-md text-[var(--secondary)] max-w-2xl mx-auto">
             Premium eco-friendly merchandise crafted with care and designed to last
           </p>
         </div>
