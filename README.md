@@ -1,5 +1,4 @@
 # Next.js: Creating and Hosting a Full-Stack Site
-This is the repository for the LinkedIn Learning course `Next.js: Creating and Hosting a Full-Stack Site`. The full course is available from [LinkedIn Learning][lil-course-url].
 
 ![lil-thumbnail-url]
 
